@@ -1,0 +1,67 @@
+﻿@model IEnumerable<QLBHTranHuynhThanhTram.Models.Cart>
+
+@{
+    ViewBag.Title = "ListCarts";
+}
+
+<h2>ListCarts</h2>
+
+<p>
+    @Html.ActionLink("Back to ListProduct", "ListProduct")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Total)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ProductID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ProductID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProductID })
+
+
+            </td>
+        </tr>
+
+
+    }
+    <tr>
+        <td colspan="2">Số lượng sản phẩm: @ViewBag.CountProduct</td>
+        <td colspan="2">Thành tiền: @String.Format("{0:0.00}", ViewBag.Total) VNĐ</td>
+        <td colspan="2">@Html.ActionLink("Đặt hàng", "OrderProduct")</td>
+    </tr>
+
+</table>
